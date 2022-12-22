@@ -20,6 +20,7 @@
 
 import sys
 import itertools
+from string import ascii_lowercase
 
 #  Input: strng is a string of characters and key is a positive
 #         integer 2 or greater and strictly less than the length
@@ -113,20 +114,44 @@ def filter_string(strng):
 def encode_character(p, s):
     p_val = ord(p) - 97
     s_val = ord(s) - 97
-    total_mod = p_val + s_val % 26
+    
+    total_mod = (p_val + s_val) % 26
+
     return chr(total_mod + 97)
 
-
 def decode_character(p, s):
-    return ""
+    p_val = ord(p) - 97
+    s_val = ord(s) - 97
 
+    return ascii_lowercase[-1 * (p_val -  s_val)]
 
 def vigenere_encode(strng, phrase):
-    return ""
+    STRING_LEN, PHRASE_LEN = len(strng), len(phrase)
+    
+    s1 = ''
+    for i in range(STRING_LEN):
+        s1 += phrase[i % PHRASE_LEN]
+
+    encoded_str = ''
+    for c1, c2 in zip(s1, strng):
+        encoded_str += encode_character(c1, c2)
+
+    return encoded_str
 
 
 def vigenere_decode(strng, phrase):
-    return ""
+    STRING_LEN, PHRASE_LEN = len(strng), len(phrase)
+
+    s1 = ''
+    for i in range(STRING_LEN):
+        s1 += phrase[i % PHRASE_LEN]
+    
+    decoded_str = ''
+    for c1, c2 in zip(s1, strng):
+        decoded_str += decode_character(c1, c2)
+
+    return decoded_str
+
 
 
 def main():
@@ -138,7 +163,7 @@ def main():
         pair = tuple(map(str.rstrip, lines[i: i + 2]))
         arr.append(pair)
 
-    print('Rail Fence Cipher\n')
+    print('\nRail Fence Cipher\n')
 
     plaintext, key = arr[0]
     encoded_text = rail_fence_encode(plaintext, int(key))
@@ -161,20 +186,23 @@ def main():
     print('Vigenere Cipher\n')
 
     plaintext, pass_phrase = arr[2]
+    encoded_text = vigenere_encode(plaintext, pass_phrase)
 
-    # read the plain text from stdin
+    print(f'Plain Text: {plaintext}')
+    print(f'Pass Phrase: {pass_phrase}')
+    print(f'Encoded Text: {encoded_text}')
 
-    # read the pass phrase from stdin
+    print()
 
-    # encrypt and print the encoded text using Vigenere cipher
+    encoded_text, pass_phrase = arr[3]
+    decoded_text = vigenere_decode(encoded_text, pass_phrase)
+    
+    print(f'Encoded Text: {encoded_text}')
+    print(f'Pass Phrase: {pass_phrase}')
+    print(f'Decoded Text: {decoded_text}')
 
-    # read the encoded text from stdin
+    print()
 
-    # read the pass phrase from stdin
 
-    # decrypt and print the plain text using Vigenere cipher
-
-    # The line above main is for grading purposes only.
-    # DO NOT REMOVE THE LINE ABOVE MAIN
 if __name__ == "__main__":
     main()
