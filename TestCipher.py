@@ -1,22 +1,22 @@
 #  File: TestCipher.py
 
-#  Description:
+#  Description: Decodes and encodes a rail_fence cipher and vigenere ciphers
 
-#  Student's Name:
+#  Student's Name: Preston Cook
 
-#  Student's UT EID:
+#  Student's UT EID: plc886
 
-#  Partner's Name:
+#  Partner's Name: N/A
 
-#  Partner's UT EID:
+#  Partner's UT EID: N/A
 
 #  Course Name: CS 313E
 
-#  Unique Number:
+#  Unique Number: N/A
 
-#  Date Created:
+#  Date Created: 12/22/2022
 
-#  Date Last Modified:
+#  Date Last Modified: 12/22/2022
 
 import sys
 import itertools
