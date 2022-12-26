@@ -95,8 +95,6 @@ class Poker (object):
     # simulate the play of poker
     def play(self):
         # sort the hands of each player and print
-        hand_type = []  # create a list to store type of hand
-        hand_points = []  # create a list to store points for hand
         hand_vals = []
         checks = [
             self.is_royal, 
